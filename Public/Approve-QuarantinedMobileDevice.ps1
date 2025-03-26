@@ -180,7 +180,7 @@ This function requires the ExchangeOnlineManagement module to be installed.
                     }
                 }
                 catch {
-                    $errorMessage = "Failed to approve device $($selectedDevice.DeviceId) for user $UserId: $($_.Exception.Message)"
+                    $errorMessage = "Failed to approve device $($selectedDevice.DeviceId) for user $UserId $($_.Exception.Message)"
                     Write-Error $errorMessage
                     
                     if ($LogActivities) {
