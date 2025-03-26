@@ -1,0 +1,56 @@
+image: mcr.microsoft.com/powershell:latest
+
+stages:
+  - test
+  - build
+  - deploy
+
+variables:
+  MODULE_NAME: "Entra-Toolbox"
+
+before_script:
+  - pwsh -Command "Get-Host | Select-Object Version"
+  - pwsh -Command "Install-Module -Name Pester -Force -SkipPublisherCheck -Scope CurrentUser"
+  - pwsh -Command "Install-Module -Name PSScriptAnalyzer -Force -SkipPublisherCheck -Scope CurrentUser"
+
+# Run tests
+test:
+  stage: test
+  script:
+    - pwsh -Command "./build-tests.ps1 -Coverage"
+  artifacts:
+    paths:
+      - coverage.xml
+      - TestResults.xml
+    reports:
+      junit: TestResults.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+
+# Run PSScriptAnalyzer
+lint:
+  stage: test
+  script:
+    - pwsh -Command "Import-Module PSScriptAnalyzer; Invoke-ScriptAnalyzer -Path . -Recurse -Settings PSScriptAnalyzerSettings.psd1 -ExcludeRule PSAvoidUsingPlainTextForPassword,PSAvoidUsingConvertToSecureStringWithPlainText | Format-List -Property RuleName,Message,ScriptName,Line"
+  allow_failure: true
+
+# Build module
+build:
+  stage: build
+  script:
+    - pwsh -Command "./build-module.ps1"
+  artifacts:
+    paths:
+      - output/
+  only:
+    - main
+
+# Publish to private repository
+publish:
+  stage: deploy
+  script:
+    - pwsh -Command "./publish-module.ps1"
+  only:
+    - main
+  when: manual
