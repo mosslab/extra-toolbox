@@ -22,7 +22,7 @@ if (Test-Path -Path $privatePath) {
     }
     
     # Load mobile device management functions
-    $mdmPath = Join-Path -Path $privatePath -ChildPath 'Mobile-Device-Management'
+    $mdmPath = Join-Path -Path $privatePath -ChildPath 'Device Management'
     if (Test-Path -Path $mdmPath) {
         Get-ChildItem -Path $mdmPath -Filter "*.ps1" | ForEach-Object {
             . $_.FullName
@@ -31,7 +31,7 @@ if (Test-Path -Path $privatePath) {
     }
     
     # Load role management functions
-    $rolePath = Join-Path -Path $privatePath -ChildPath 'Role-Management'
+    $rolePath = Join-Path -Path $privatePath -ChildPath 'Role Management'
     if (Test-Path -Path $rolePath) {
         Get-ChildItem -Path $rolePath -Filter "*.ps1" | ForEach-Object {
             . $_.FullName
