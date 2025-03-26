@@ -1,0 +1,29 @@
+# Create a .gitignore file
+cat > .gitignore << 'EOF'
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# PowerShell specific
+*.psd1.bak
+*.psm1.bak
+*.ps1.bak
+
+# Output logs
+*.log
+TestResults.xml
+coverage.xml
+
+# Folders
+output/
+.vscode/
+.idea/
+EOF
