@@ -59,7 +59,12 @@ This function is intended for internal use by Approve-QuarantinedMobileDevice.
         
         try {
             # Approve the device
-            Set-CASMailbox $UserId -ActiveSyncAllowedDeviceIDs @{add=$SelectedDevice.DeviceId} -ErrorAction Stop
+            # Set-CASMailbox $UserId -ActiveSyncAllowedDeviceIDs @{add=$SelectedDevice.DeviceId} -ErrorAction Stop
+            # Alt option
+            $casMailbox = Get-CASMailbox $UserId
+            $allowed = $casMailbox.ActiveSyncAllowedDeviceIds
+            $allowed += $selectedDevice.DeviceId
+            Set-CASMailbox $UserId -ActiveSyncAllowedDeviceIds $allowed -ErrorAction Stop
             $successMessage = "DeviceID $($SelectedDevice.DeviceId) has been approved for user $UserId."
             Write-Host $successMessage -ForegroundColor Green
             
