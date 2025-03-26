@@ -33,7 +33,8 @@ This function is intended for internal use by Approve-QuarantinedMobileDevice.
     Write-Verbose "$functionName - Retrieving quarantined devices for user $UserId"
     
     try {
-        $quarantinedDevices = Get-MobileDevice -Mailbox $UserId -Filter "DeviceAccessState -eq 'Quarantined'" -ErrorAction Stop
+        # $quarantinedDevices = Get-MobileDevice -Mailbox $UserId -Filter "DeviceAccessState -eq 'Quarantined'" -ErrorAction Stop
+        $quarantinedDevices = Get-MobileDevice -Mailbox $UserId | Where-Object { $_.DeviceAccessState -eq 'Quarantined' }
         
         if ($null -eq $quarantinedDevices -or $quarantinedDevices.Count -eq 0) {
             Write-Host "No quarantined devices found for user $UserId." -ForegroundColor Yellow
