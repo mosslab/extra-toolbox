@@ -222,7 +222,7 @@ Required permissions: User.ReadWrite.All, UserAuthenticationMethod.ReadWrite.All
                         }
                     }
                     catch {
-                        $errorMessage = "Failed to create TAP for user $UserID: $($_.Exception.Message)"
+                        $errorMessage = "Failed to create TAP for user $UserID $($_.Exception.Message)"
                         Write-Error $errorMessage
                         
                         if ($LogActivities -and (Get-Command Write-ActivityToLogAnalytics -ErrorAction SilentlyContinue)) {
@@ -355,7 +355,7 @@ Required permissions: User.ReadWrite.All, UserAuthenticationMethod.ReadWrite.All
                             }
                         }
                         catch {
-                            $errorMessage = "Failed to create TAP for user $userId: $($_.Exception.Message)"
+                            $errorMessage = "Failed to create TAP for user $userId $($_.Exception.Message)"
                             Write-Error $errorMessage
                             
                             if ($LogActivities -and (Get-Command Write-ActivityToLogAnalytics -ErrorAction SilentlyContinue)) {
