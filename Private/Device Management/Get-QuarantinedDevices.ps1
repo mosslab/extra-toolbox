@@ -14,7 +14,7 @@ The identifier of the user for whom you want to retrieve quarantined devices.
 Enables logging of activities to Log Analytics.
 
 .EXAMPLE
-$quarantinedDevices = Get-QuarantinedDevices -UserId "john.doe@contoso.com"
+$quarantinedDevices = Get-QuarantinedDevices -UserId "user@domain.com"
 
 .NOTES
 This function is intended for internal use by Approve-QuarantinedMobileDevice.
@@ -48,7 +48,7 @@ This function is intended for internal use by Approve-QuarantinedMobileDevice.
         }
         
         # Display information about the devices
-        Write-Host "Quarantined devices for user $UserId:" -ForegroundColor Cyan
+        Write-Host "Quarantined devices for user $UserId" -ForegroundColor Cyan
         $quarantinedDevices | Format-Table DeviceId, FriendlyName, DeviceModel, DeviceType, DeviceOS
         
         return $quarantinedDevices

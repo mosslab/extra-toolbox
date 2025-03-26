@@ -24,7 +24,7 @@ Runs the function in non-interactive mode, suitable for automation.
 Enables logging of activities to Log Analytics.
 
 .EXAMPLE
-$result = Approve-SelectedDevice -UserId "john.doe@contoso.com" -SelectedDevice $device -Force
+$result = Approve-SelectedDevice -UserId "user@domain.com" -SelectedDevice $device -Force
 
 .NOTES
 This function is intended for internal use by Approve-QuarantinedMobileDevice.
@@ -79,7 +79,7 @@ This function is intended for internal use by Approve-QuarantinedMobileDevice.
             }
         }
         catch {
-            $errorMessage = "Failed to approve device $($SelectedDevice.DeviceId) for user $UserId: $($_.Exception.Message)"
+            $errorMessage = "Failed to approve device $($SelectedDevice.DeviceId) for user $UserId $($_.Exception.Message)"
             Write-Error $errorMessage
             
             if ($LogActivities) {

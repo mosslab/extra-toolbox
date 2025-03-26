@@ -14,7 +14,7 @@ An array of quarantined devices to search.
 The device ID to search for.
 
 .EXAMPLE
-$device = Find-DeviceById -QuarantinedDevices $devices -DeviceId "AppleABCD1234"
+$device = Find-DeviceById -QuarantinedDevices $devices -DeviceId "IOSSERIALNUMBER"
 
 .NOTES
 This function is intended for internal use by Approve-QuarantinedMobileDevice.
