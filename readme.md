@@ -61,17 +61,17 @@ These will be automatically installed as dependencies when installing from the P
 
 ```powershell
 # Interactive mode - will show a grid view of devices to select
-Approve-QuarantinedMobileDevice -UserId "john.doe@contoso.com"
+Approve-QuarantinedMobileDevice -UserId "user@mosslab.com"
 
 # Non-interactive mode with specific device ID
-Approve-QuarantinedMobileDevice -UserId "john.doe@contoso.com" -DeviceId "AppleABCD1234" -Force -NonInteractive
+Approve-QuarantinedMobileDevice -UserId "user@mosslab.com" -DeviceId "password" -Force -NonInteractive
 ```
 
 ### Create Temporary Access Pass
 
 ```powershell
 # For a single user
-New-TemporaryAccessPassForUser -UserID "jane.smith@contoso.com" -ExpiresIn "4 hours"
+New-TemporaryAccessPassForUser -UserID "user@mosslab.com" -ExpiresIn "4 hours"
 
 # For multiple users from a CSV file
 New-TemporaryAccessPassForUser -BulkUserCSV "C:\Temp\users.csv" -ExpiresIn "8 hours" -LogActivities
